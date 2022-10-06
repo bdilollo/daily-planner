@@ -1,8 +1,19 @@
+var timeblockTextEl = $('.time-block');
+
+
 var currentDay = moment().format("dddd, MMM Do, YYYY");
 $("#currentDay").text(currentDay);
 
 // color-coding timeblocks
 // moment.js to determine current hour (military?) -> assign to var
-// data attributes to assign number values to each hour
-// if hour matches 9, change class to "present"
-    // else if matches 10, change class to 'present' and all values smaller to 'past'
+$(function() {
+    var currentHour = moment().format("H");
+    for(var i=0; i<9; i++) {
+        if(i+9 == currentHour) {
+            timeblockTextEl.children().eq(i).children('textarea').addClass('present').removeClass('future');
+        } else if(i+9 < currentHour) {
+            timeblockTextEl.children().eq(i).children('textarea').addClass('past').removeClass('future');
+            $('.past').prop('disabled', true);
+        }
+    }
+});
