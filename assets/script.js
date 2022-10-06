@@ -30,6 +30,7 @@ $(function() {
             timeblockEl.children().eq(i).children('textarea').addClass('present').removeClass('future');
         } else if(i+9 < currentHour) {
             timeblockEl.children().eq(i).children('textarea').addClass('past').removeClass('future');
+            // disable the text box for past rows
             $('.past').prop('disabled', true);
         }
     }
